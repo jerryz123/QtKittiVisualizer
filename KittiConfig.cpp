@@ -25,7 +25,7 @@ limitations under the License.
 #include <boost/filesystem/path.hpp>
 #include <boost/format.hpp>
 
-std::string KittiConfig::data_directory = "../KittiData";
+std::string KittiConfig::data_directory = "../kittidata";
 std::string KittiConfig::raw_data_directory = "raw";
 std::string KittiConfig::dataset_folder_template = "%|04|_sync";
 std::string KittiConfig::point_cloud_directory = "velodyne_points/data";
@@ -38,7 +38,6 @@ const std::vector<int> KittiConfig::availableDatasets = KittiConfig::initAvailab
 boost::filesystem::path KittiConfig::getPointCloudPath(int dataset)
 {
     return boost::filesystem::path(data_directory)
-            / raw_data_directory
             / (boost::format(dataset_folder_template) % dataset).str()
             / point_cloud_directory
             ;
@@ -54,7 +53,6 @@ boost::filesystem::path KittiConfig::getPointCloudPath(int dataset, int frameId)
 boost::filesystem::path KittiConfig::getTrackletsPath(int dataset)
 {
     return boost::filesystem::path(data_directory)
-            / raw_data_directory
             / (boost::format(dataset_folder_template) % dataset).str()
             / tracklets_directory
             / tracklets_file_name
